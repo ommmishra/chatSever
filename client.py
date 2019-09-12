@@ -9,13 +9,13 @@ def receive():
             break
 
 def send():
-    msg = input("Enter your message: ")
+    msg = input()
     client_socket.send(bytes(msg, "utf8"))
     if msg== "{quit}":        
         client_socket.close()
 
-HOST = input('Enter host: ')
-PORT = int(input('Enter PORT: '))
+HOST = '127.0.0.1'
+PORT = 33000
 
 BUFSIZ = 1024
 ADDR = (HOST, PORT)
@@ -23,11 +23,11 @@ ADDR = (HOST, PORT)
 client_socket = socket(AF_INET, SOCK_STREAM)
 client_socket.connect(ADDR)
 
-receive()
 
 THREAD_RECEIVE = Thread(target=receive)
 THREAD_RECEIVE.start()
 
-
 while True:
     send()
+
+

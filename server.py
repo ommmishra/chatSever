@@ -23,7 +23,7 @@ def accept_incoming_connections():
 def handle_client(client):
     name = client.recv(BUFSIZ).decode("utf8")
     client.send(bytes("Welcome %s, if you ever want to quit type {quit} to exit." % name, "utf8"))
-    broadcast(bytes("%s has joined the chat." % name, "utf8"))
+    broadcast(bytes(" %s has joined the chat." % name, "utf8"))
     clients[client] = name
     while True:
         msg = client.recv(BUFSIZ)
